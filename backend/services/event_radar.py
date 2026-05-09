@@ -1,9 +1,9 @@
 import uuid
 import time
 from datetime import datetime
-from backend.services.scraper import search_with_deep_scrape, duckduckgo_search, jina_scrape
-from backend.services.llm_client import call_llm, parse_json_response
-from backend.database import insert_event, get_all_events
+from services.scraper import search_with_deep_scrape, duckduckgo_search, jina_scrape
+from services.llm_client import call_llm, parse_json_response
+from database import insert_event, get_all_events
 
 CURRENT_YEAR = datetime.now().year
 CURRENT_MONTH = datetime.now().strftime("%B")  # e.g., "May"

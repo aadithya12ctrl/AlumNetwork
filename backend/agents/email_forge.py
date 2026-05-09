@@ -1,7 +1,7 @@
 import uuid
-from backend.services.llm_client import call_llm, parse_json_response
-from backend.services.scraper import search_with_deep_scrape
-from backend.database import (
+from services.llm_client import call_llm, parse_json_response
+from services.scraper import search_with_deep_scrape
+from database import (
     get_startup_by_id, get_alumni_by_id,
     insert_cold_email
 )

@@ -1,5 +1,5 @@
 import os
-from backend.services.llm_client import call_llm
+from services.llm_client import call_llm
 
 try:
     print("Calling LLM...")

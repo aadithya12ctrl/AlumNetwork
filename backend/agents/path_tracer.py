@@ -1,6 +1,6 @@
 import uuid
-from backend.services.llm_client import call_llm, parse_json_response
-from backend.database import get_alumni_by_id, get_all_startups, insert_path_trace
+from services.llm_client import call_llm, parse_json_response
+from database import get_alumni_by_id, get_all_startups, insert_path_trace
 
 
 def trace_path(student_id: str, alumni_id: str, student_profile: dict) -> dict:

@@ -1,9 +1,9 @@
 import uuid
 import time
 from datetime import datetime
-from backend.services.scraper import search_with_deep_scrape, duckduckgo_search, jina_scrape
-from backend.services.llm_client import call_llm, parse_json_response
-from backend.database import insert_startup, get_all_startups
+from services.scraper import search_with_deep_scrape, duckduckgo_search, jina_scrape
+from services.llm_client import call_llm, parse_json_response
+from database import insert_startup, get_all_startups
 
 DOMAINS = ["healthtech", "fintech", "edtech", "climate", "b2b saas", "logistics", "AI/ML", "deeptech"]
 

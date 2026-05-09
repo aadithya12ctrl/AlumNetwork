@@ -141,7 +141,7 @@ def init_db():
 
 def _seed_mock_data():
     """Seed the database with mock data from constants if tables are empty."""
-    from backend.constants import MOCK_ALUMNI, MOCK_EVENTS, MOCK_STARTUPS
+    from constants import MOCK_ALUMNI, MOCK_EVENTS, MOCK_STARTUPS
 
     conn = get_connection()
 

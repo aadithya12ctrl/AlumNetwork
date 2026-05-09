@@ -4,20 +4,20 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.database import (
+from database import (
     init_db, get_all_alumni, get_alumni_by_id,
     get_all_startups, get_all_events, update_project_validator
 )
-from backend.models import (
+from models import (
     MentorRequestBody, ProjectGenerateBody, EmailForgeBody,
     PathTraceBody, SkillBridgeBody, ValidatorRequestBody
 )
-from backend.agents.project_generator import generate_project_brief
-from backend.agents.email_forge import forge_cold_email
-from backend.agents.path_tracer import trace_path
-from backend.agents.skill_bridge import analyze_skill_bridge
-from backend.services.startup_radar import refresh_startup_radar
-from backend.services.event_radar import refresh_event_radar
+from agents.project_generator import generate_project_brief
+from agents.email_forge import forge_cold_email
+from agents.path_tracer import trace_path
+from agents.skill_bridge import analyze_skill_bridge
+from services.startup_radar import refresh_startup_radar
+from services.event_radar import refresh_event_radar
 
 
 @asynccontextmanager

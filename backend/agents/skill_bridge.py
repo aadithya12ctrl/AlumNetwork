@@ -1,7 +1,7 @@
 import uuid
-from backend.services.llm_client import call_llm, parse_json_response
-from backend.services.scraper import search_with_deep_scrape
-from backend.database import get_all_alumni, insert_skill_bridge
+from services.llm_client import call_llm, parse_json_response
+from services.scraper import search_with_deep_scrape
+from database import get_all_alumni, insert_skill_bridge
 
 
 def analyze_skill_bridge(student_id: str, company: str, student_profile: dict) -> dict:
