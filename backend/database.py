@@ -5,10 +5,14 @@ import json
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
-DB_PATH = os.getenv("SQLITE_DB", "backend/alumnetwork.db")
+# Use absolute path for DB to handle different working directories (local vs monorepo deploy)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.getenv("SQLITE_DB", os.path.join(BASE_DIR, "alumnetwork.db"))
 
 # Ensure the directory exists
-os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+db_dir = os.path.dirname(DB_PATH)
+if db_dir:
+    os.makedirs(db_dir, exist_ok=True)
 
 
 def get_connection():
