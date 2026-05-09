@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=Cormorant+SC:wght@300;400;500;600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", serif;
+  --font-heading: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-sc: "Cormorant SC", serif;
+  --font-mono: "DM Mono", monospace;
+
+  --color-bg-primary: #0A0A0A;
+  --color-bg-secondary: #111111;
+  --color-accent-cream: #E8DCC8;
+  --color-accent-warm: #C4956A;
+  --color-accent-burgundy: #6B2737;
+  --color-accent-muted: #4A4A4A;
+  --color-text-body: #A89880;
+
+  --shadow-chiaroscuro: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(196, 149, 106, 0.05);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-body font-sans antialiased selection:bg-accent-warm selection:text-bg-primary relative;
+  }
+
+  /* Grain Texture Overlay */
+  body::before {
+    content: "";
+    @apply fixed inset-0 z-50 pointer-events-none opacity-[0.035] mix-blend-overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-accent-cream;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/[0.03] border border-accent-warm/10 backdrop-blur-sm shadow-chiaroscuro relative overflow-hidden transition-all duration-500;
+  }
+
+  .glass-card:hover {
+    @apply border-accent-warm/30 shadow-[0_0_40px_rgba(196,149,106,0.1)];
+  }
+
+  .vellum {
+    @apply bg-[#0D0D0B] border border-accent-muted/20 relative;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(196, 149, 106, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(107, 39, 55, 0.05) 0px, transparent 50%);
+  }
+
+  .ornamental-line {
+    @apply h-[1px] w-full bg-gradient-to-r from-transparent via-accent-warm/30 to-transparent relative my-12;
+  }
+
+  .ornamental-line::after {
+    content: "✦";
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-bg-primary px-4 text-accent-warm text-[10px];
+  }
+
+  .small-caps {
+    @apply font-sc uppercase tracking-[0.4em] font-medium text-[10px];
+  }
+
+  .hero-floral {
+    background-image: url('https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    @apply absolute inset-0 opacity-[0.07] mix-blend-screen pointer-events-none grayscale;
+  }
+
+  .sidebar-ornament {
+    background-image: url('https://images.unsplash.com/photo-1615486511484-92e172cc4ee0?q=80&w=1000&auto=format&fit=crop');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    @apply absolute bottom-0 left-0 w-full h-[400px] pointer-events-none opacity-[0.12] mix-blend-screen grayscale contrast-150;
+  }
+
+  .card-texture {
+    @apply relative overflow-hidden;
+  }
+
+  .card-texture::before {
+    content: "";
+    @apply absolute inset-0 opacity-[0.02] pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .section-divider {
+    @apply w-full h-[1px] bg-gradient-to-r from-transparent via-accent-warm/20 to-transparent relative my-16;
+  }
+
+  .section-divider::after {
+    content: "❧";
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-bg-primary px-4 text-accent-warm/60 text-2xl font-serif leading-none italic;
+  }
+
+  .engraved-text {
+    @apply text-accent-cream drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)];
+  }
+}
