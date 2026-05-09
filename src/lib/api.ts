@@ -1,12 +1,14 @@
 import { Alumni, Event, Startup } from '../types';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
 export const fetchAlumni = async (filters?: { domain?: string; company?: string; open_to_refer?: boolean }): Promise<Alumni[]> => {
   const params = new URLSearchParams();
   if (filters?.domain) params.append('domain', filters.domain);
   if (filters?.company) params.append('company', filters.company);
   if (filters?.open_to_refer) params.append('open_to_refer', 'true');
   
-  const res = await fetch(`/api/alumni?${params.toString()}`);
+  const res = await fetch(`${API_BASE_URL}/api/alumni?${params.toString()}`);
   const data = await res.json();
   return data.alumni.map((a: any) => ({
     id: a.id,
@@ -21,7 +23,7 @@ export const fetchAlumni = async (filters?: { domain?: string; company?: string;
 };
 
 export const fetchEvents = async (): Promise<Event[]> => {
-  const res = await fetch('/api/events');
+  const res = await fetch(`${API_BASE_URL}/api/events`);
   const data = await res.json();
   return data.events.map((e: any) => ({
     id: e.id,
@@ -38,7 +40,7 @@ export const fetchStartups = async (filters?: { domain?: string; stage?: string 
   if (filters?.domain) params.append('domain', filters.domain);
   if (filters?.stage) params.append('stage', filters.stage);
   
-  const res = await fetch(`/api/startups?${params.toString()}`);
+  const res = await fetch(`${API_BASE_URL}/api/startups?${params.toString()}`);
   const data = await res.json();
   return data.startups.map((s: any) => ({
     id: s.id,
@@ -51,7 +53,7 @@ export const fetchStartups = async (filters?: { domain?: string; stage?: string 
 };
 
 export const generateProject = async (studentId: string, startupId: string) => {
-  const res = await fetch('/api/build-to-apply/generate', {
+  const res = await fetch(`${API_BASE_URL}/api/build-to-apply/generate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ student_id: studentId, startup_id: startupId }),
@@ -60,7 +62,7 @@ export const generateProject = async (studentId: string, startupId: string) => {
 };
 
 export const requestValidation = async (projectId: string, alumniId: string) => {
-  const res = await fetch('/api/build-to-apply/validate', {
+  const res = await fetch(`${API_BASE_URL}/api/build-to-apply/validate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ project_id: projectId, alumni_id: alumniId }),
@@ -69,7 +71,7 @@ export const requestValidation = async (projectId: string, alumniId: string) => 
 };
 
 export const forgeColdEmail = async (studentId: string, startupId: string, projectId?: string, tone?: string) => {
-  const res = await fetch('/api/cold-email/forge', {
+  const res = await fetch(`${API_BASE_URL}/api/cold-email/forge`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ student_id: studentId, startup_id: startupId, project_id: projectId, tone }),
@@ -78,7 +80,7 @@ export const forgeColdEmail = async (studentId: string, startupId: string, proje
 };
 
 export const traceAlumniPath = async (studentId: string, alumniId: string) => {
-  const res = await fetch('/api/path/trace', {
+  const res = await fetch(`${API_BASE_URL}/api/path/trace`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ student_id: studentId, alumni_id: alumniId }),
@@ -87,7 +89,7 @@ export const traceAlumniPath = async (studentId: string, alumniId: string) => {
 };
 
 export const analyzeSkillBridge = async (studentId: string, company: string) => {
-  const res = await fetch('/api/skill-bridge/analyze', {
+  const res = await fetch(`${API_BASE_URL}/api/skill-bridge/analyze`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ student_id: studentId, company }),
